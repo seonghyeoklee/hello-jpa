@@ -29,11 +29,21 @@ public class JpaMain {
 //            Member findMember = em.find(Member.class, 1L);
 //            findMember.setUsername("HelloJPA");
 
-            List<Member> members = em.createQuery("select m from Member m", Member.class)
-                    .setFirstResult(1)
-                    .setMaxResults(10)
-                    .getResultList();
+//            List<Member> members = em.createQuery("select m from Member m", Member.class)
+//                    .setFirstResult(1)
+//                    .setMaxResults(10)
+//                    .getResultList();
 
+            Team team = new Team();
+            team.setName("Team1");
+            /* 연관관계의 주인만 변경가능 */
+//            team.getMembers().add(member);
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername("memberA");
+            member.setTeam(team);
+            em.persist(member);
 
             tx.commit();
         } catch (Exception e) {
