@@ -14,6 +14,10 @@ public class Member {
     @Column(name = "name")
     private String username;
 
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
+
     private Integer age;
 
     @Enumerated(EnumType.STRING)
