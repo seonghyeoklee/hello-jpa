@@ -27,11 +27,25 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date createDate;
+//
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date lastModifiedDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
+    @Embedded
+    private Period workPeriod;
+
+    @Embedded
+    private Address homeAddress;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column(name = "workCity"))
+            ,@AttributeOverride(name = "street", column = @Column(name = "workStreet"))
+            ,@AttributeOverride(name = "zipCode", column = @Column(name = "workZipCode"))
+    })
+    private Address wordAddress;
 
     @Lob
     private String description;
