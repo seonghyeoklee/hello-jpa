@@ -1,7 +1,7 @@
 package study.jpa.hellojpa;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 @Entity
 @Table(name = "Member")
@@ -46,6 +46,15 @@ public class Member {
             ,@AttributeOverride(name = "zipCode", column = @Column(name = "workZipCode"))
     })
     private Address wordAddress;
+
+    @ElementCollection
+    @CollectionTable(name = "FAVORITE_FOOD", joinColumns = @JoinColumn(name = "MEMBER_ID"))
+    @Column(name = "FOOD_NAME")
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(name = "ADDRESS", joinColumns = @JoinColumn(name = "MEMBER_ID"))
+    private List<Address> addressHistory = new ArrayList<>();
 
     @Lob
     private String description;
