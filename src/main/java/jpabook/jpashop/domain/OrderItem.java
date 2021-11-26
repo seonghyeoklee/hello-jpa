@@ -9,15 +9,9 @@ public class OrderItem {
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
 
-//    @Column(name = "ORDER_ID")
-//    private Long orderId;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
-
-//    @Column(name = "ITEM_ID")
-//    private Long itemId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ITEM_ID")
